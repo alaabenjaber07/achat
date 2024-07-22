@@ -1,11 +1,14 @@
-# Utilisez une image de base avec Java 11
-FROM openjdk:11-jdk-alpine
+# Utilisez une image de base avec Java 8
+FROM openjdk:8-jdk-alpine
 
 # Exposez le port de votre application Spring Boot
-EXPOSE 8082
+EXPOSE 8080
 
-# Ajoutez le fichier JAR de votre application dans l'image Docker
-ADD target/achat-1.0.jar achat-1.0.jar
+# Définissez le répertoire de travail
+WORKDIR /app
 
-# Définissez le point d'entrée de votre application
-ENTRYPOINT ["java", "-jar", "/achat-1.0.jar"]
+# Copiez le fichier jar dans le conteneur
+COPY target/achat-1.0.jar /app/achat-1.0.jar
+
+# Exécutez l'application Spring Boot
+ENTRYPOINT ["java", "-jar", "achat-1.0.jar"]
