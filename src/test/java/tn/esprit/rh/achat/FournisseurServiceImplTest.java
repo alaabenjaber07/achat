@@ -1,10 +1,10 @@
 package tn.esprit.rh.achat;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import tn.esprit.rh.achat.entities.DetailFournisseur;
 import tn.esprit.rh.achat.entities.Fournisseur;
 import tn.esprit.rh.achat.entities.SecteurActivite;
@@ -22,6 +22,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class FournisseurServiceImplTest {
 
     @InjectMocks
@@ -38,11 +39,6 @@ class FournisseurServiceImplTest {
 
     @Mock
     SecteurActiviteRepository secteurActiviteRepository;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     void testRetrieveAllFournisseurs() {
@@ -124,5 +120,4 @@ class FournisseurServiceImplTest {
         verify(secteurActiviteRepository, times(1)).findById(idSecteurActivite);
         verify(fournisseurRepository, times(1)).save(fournisseur);
     }
-
 }
